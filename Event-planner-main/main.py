@@ -1,0 +1,66 @@
+from fastapi import FastAPI, HTTPException, Depends
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from models import get_db, Base, engine
+from sqlalchemy.orm import Session
+from auth import router as auth_router, get_current_user
+from event_routes import router as event_router
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
+from fastapi.requests import Request
+import models
+
+app = FastAPI()
+
+templates = Jinja2Templates(directory="static")
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+Base.metadata.create_all(bind=engine)
+
+app.include_router(auth_router)
+app.include_router(event_router)
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+@app.get("/", response_class=HTMLResponse)
+def homepage(request: Request, db: Session = Depends(get_db)):
+    events = db.query(models.Event).all()
+    # events = [
+    #     {
+    #         "name": e.name,
+    #         "date": e.date,
+    #         "place": e.place,
+    #         "description": e.description
+    #     }
+    #     for e in events
+    # ]
+    context = {
+        "request": request,
+        "events": events
+    }
+    return templates.TemplateResponse("index.html", context)
+
+@app.get("/my-events", response_class=HTMLResponse)
+def my_films(request: Request, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    favorite_events = current_user.favorites  # Завдяки relationship, не треба вручну SQL
+    return templates.TemplateResponse("mojeeventy.html", {
+        "request": request,
+        "events": favorite_events
+    })
+
+
+# @app.get("/my-events", response_class=HTMLResponse)
+# def my_events(request: Request, db: Session = Depends(get_db)):
+#     username = get_current_user(request)
+#     user = db.query(models.User).filter(models.User.username == username).first()
+
+#     events = db.query(models.Event).filter(models.Event.user_id == user.id).all()
+#     return templates.TemplateResponse("myevents.html", {"request": request, "events": events})
