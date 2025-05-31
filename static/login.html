@@ -1,9 +1,85 @@
-<form method="post">
-    <input name="username" placeholder="Username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit">Login</button>
-    {% if error %}<p>{{ error }}</p>{% endif %}
-  </form>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVENT PLANNER</title>
+    <link rel="stylesheet" href="static/css/registerstyle.css" />
+    <script src="https://unpkg.com/scrollreveal"></script>
+  </head>
 
-<p>Don't have an account? <a href="/register">Register here</a></p>
-  
+  <body>
+    <header class="main-head">
+      <div class="gora-media">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i
+        ></a>
+        <a href="#"
+          ><img src="static/mainimg/logo2.png" class="medialogo" alt=""
+        /></a>
+      </div>
+
+      <nav>
+        <ul class="lewy">
+          <li>
+            <p id="ukryte">
+              <a href="/"
+                ><ion-icon class="strzala" name="arrow-back-outline"></ion-icon
+              ></a>
+            </p>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <section>
+      <div class="login-box">
+        <form action="" method="post">
+          <h2>Logowanie</h2>
+          <div class="input-box">
+            <span class="icon"
+              ><ion-icon name="accessibility"></ion-icon>
+            </span>
+            <input name="username" required />
+            <label> Nazwa użytkownika</label>
+          </div>
+          <div class="input-box">
+            <span class="icon"><ion-icon name="lock-closed"></ion-icon> </span>
+            <input name="password" type="password" required />
+            <label> Hasło</label>
+          </div>
+
+          <button type="Submit">Zaloguj</button>
+          <div class="register-link">
+            <p>
+              Nie masz konta?
+              <a href="register">Zarejestruj się</a>
+            </p>
+          </div>
+          <!--{% if error %}
+          <p>{{ error }}</p>
+          {% endif %}-->
+        </form>
+      </div>
+    </section>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script>
+      function myFunction() {
+        var x = document.getElementById("ukryte");
+        if (x.style.display === "block") {
+          x.style.display = "none";
+        } else {
+          x.style.display = "block";
+        }
+      }
+    </script>
+    <script src="static/js/reglog.js"></script>
+  </body>
+</html>

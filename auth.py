@@ -11,6 +11,7 @@ from fastapi.templating import Jinja2Templates
 import models, schemas
 from models import get_db
 from dotenv import load_dotenv
+from models import User
 
 templates = Jinja2Templates(directory="static")
 
@@ -20,6 +21,30 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 router = APIRouter()
+
+
+def optional_current_user(request: Request, db: Session = Depends(get_db)):
+    token = request.cookies.get("access_token")
+    if not token:
+        return None
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username = payload.get("sub")
+        if username is None:
+            return None
+        # Отримуємо об'єкт користувача з бази
+        return db.query(User).filter(User.username == username).first()
+    except JWTError:
+        return None
+# def optional_current_user(request: Request):
+#     token = request.cookies.get("access_token")
+#     if not token:
+#         return None
+#     try:
+#         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+#         return payload.get("sub")
+#     except JWTError:
+#         return None
 
 
 def hash_password(password: str):

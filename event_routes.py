@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from models import get_db, favourites_table,User, Event
 import models, schemas
 from auth import get_current_user
+
 router = APIRouter()
 
 
@@ -83,6 +84,33 @@ def add_speaker(speaker: schemas.SpeakerCreate, db: Session = Depends(get_db)):
 @router.get("/events/{event_id}/speakers", response_model=list[schemas.SpeakerOut])
 def get_speaker(event_id: int, db: Session = Depends(get_db)):
     return db.query(models.Speaker).filter(models.Speaker.event_id == event_id).all()
+
+# @router.post("/add-to-favorites")
+# async def add_to_favorites(
+#     request: Request,
+#     db: Session = Depends(get_db),
+#     current_user: User = Depends(get_current_user),
+#     event_id: int = Form(...)
+# ):
+#     event = db.query(Event).filter(Event.id == event_id).first()
+#     if not event:
+#         request.session["message"] = "Event do not found!"
+#         return RedirectResponse("/", status_code=HTTP_302_FOUND)
+
+#     already = db.query(favourites_table).filter(
+#         favourites_table.c.user_id == current_user.id,
+#         favourites_table.c.event_id == event_id
+#     ).first()
+
+#     if already:
+#         request.session["message"] = "Event in favourites"
+#     else:
+#         db.execute(favourites_table.insert().values(user_id=current_user.id, event_id=event_id))
+#         db.commit()
+#         request.session["message"] = "Event added to favourites"
+
+#     return RedirectResponse("/", status_code=HTTP_302_FOUND)
+
 
 @router.post("/add-to-favorites")
 async def add_to_favorites(request: Request, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):

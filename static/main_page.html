@@ -35,7 +35,13 @@
     
       <nav>
         <ul class="lewy">
-          <li><p><a href="/login">Logowanie</a></p></li>
+            <!-- Debug: user is {{ user }} -->
+            {% if user %}
+              <li><span style="color:white; font-size: 3em;">Logged in as {{ user.username }}</span></li>
+              <li><a href="/logout">Log out</a></li>
+            {% else %}
+              <li><a href="/login">Logowanie</a></li>
+            {% endif %}
           <li><a href="#about">O nas</a></li>
           <li><a href="#eventy">Eventy</a></li>
           <li><a href="/my-events">Moje Eventy</a></li>
