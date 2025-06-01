@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>API Documentation &#8212; eventplanner 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=8d563738"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="eventplanner documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-event_routes">
+<span id="api-documentation"></span><h1>API Documentation<a class="headerlink" href="#module-event_routes" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="event_routes.add_feedback">
+<span class="sig-prename descclassname"><span class="pre">event_routes.</span></span><span class="sig-name descname"><span class="pre">add_feedback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feedback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FeedbackCreate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#event_routes.add_feedback" title="Link to this definition">¶</a></dt>
+<dd><p>Submit feedback for a event.</p>
+<p>Adds user feedback to the database for the specified event.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>FeedbackOut: The newly created feedback entry.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="event_routes.add_speaker">
+<span class="sig-prename descclassname"><span class="pre">event_routes.</span></span><span class="sig-name descname"><span class="pre">add_speaker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speaker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SpeakerCreate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#event_routes.add_speaker" title="Link to this definition">¶</a></dt>
+<dd><p>Add a new speaker.</p>
+<p>Creates and stores a new speaker with the provided information.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>speaker (SpeakerCreate): The speaker data to add.</p>
+</dd>
+<dt>Returns:</dt><dd><p>SpeakerOut: The newly created speaker object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="event_routes.add_sponsor">
+<span class="sig-prename descclassname"><span class="pre">event_routes.</span></span><span class="sig-name descname"><span class="pre">add_sponsor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sponsor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SponsorCreate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#event_routes.add_sponsor" title="Link to this definition">¶</a></dt>
+<dd><p>Register a new sponsor.</p>
+<p>Adds a sponsor to the system based on the provided details.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>SponsorOut: The newly added sponsor.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="event_routes.add_to_favorites">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">event_routes.</span></span><span class="sig-name descname"><span class="pre">add_to_favorites</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#event_routes.add_to_favorites" title="Link to this definition">¶</a></dt>
+<dd><p>Add a event to the user’s favorites.</p>
+<p>Takes the event ID from a submitted form and adds it to the authenticated user’s favorites list.</p>
+<dl class="simple">
+<dt>Raises:</dt><dd><p>HTTPException: If the event does not exist or is already in favorites.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A success message indicating the event was added.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="event_routes.buy_ticket">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">event_routes.</span></span><span class="sig-name descname"><span class="pre">buy_ticket</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#event_routes.buy_ticket" title="Link to this definition">¶</a></dt>
+<dd><p>Purchase a ticket for a event.</p>
+<p>Creates a new ticket based on the provided event and user details.</p>
+<p>After successful purchase, redirects the user to the ‘my-events’ page.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="event_routes.create_event">
+<span class="sig-prename descclassname"><span class="pre">event_routes.</span></span><span class="sig-name descname"><span class="pre">create_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EventCreate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#event_routes.create_event" title="Link to this definition">¶</a></dt>
+<dd><p>Create a new event.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>event (eventCreate): Data required to create a new event.</p>
+</dd>
+<dt>Returns:</dt><dd><p>eventOut: The newly created event object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="event_routes.get_all_events">
+<span class="sig-prename descclassname"><span class="pre">event_routes.</span></span><span class="sig-name descname"><span class="pre">get_all_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#event_routes.get_all_events" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve a list of all events.</p>
+<p>Returns all available events from the database.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>List[eventOut]: A list of event objects.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="event_routes.get_event">
+<span class="sig-prename descclassname"><span class="pre">event_routes.</span></span><span class="sig-name descname"><span class="pre">get_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#event_routes.get_event" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve a single event by its ID.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>event_id (int): The ID of the event to retrieve.</p>
+</dd>
+<dt>Returns:</dt><dd><p>eventOut: The event object if found.</p>
+</dd>
+<dt>Raises:</dt><dd><p>HTTPException: If the event with the specified ID is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="event_routes.get_feedbacks_for_event">
+<span class="sig-prename descclassname"><span class="pre">event_routes.</span></span><span class="sig-name descname"><span class="pre">get_feedbacks_for_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#event_routes.get_feedbacks_for_event" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve feedbacks for a specific event.</p>
+<p>Returns all user feedback entries related to the given event.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>List[FeedbackOut]: A list of feedback objects.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="event_routes.get_speaker">
+<span class="sig-prename descclassname"><span class="pre">event_routes.</span></span><span class="sig-name descname"><span class="pre">get_speaker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#event_routes.get_speaker" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve speakers for a specific event.</p>
+<p>Returns a list of speakers associated with the specified event.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>event_id (int): The ID of the event.</p>
+</dd>
+<dt>Returns:</dt><dd><p>List[SpeakerOut]: A list of speaker objects.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="event_routes.get_sponsors">
+<span class="sig-prename descclassname"><span class="pre">event_routes.</span></span><span class="sig-name descname"><span class="pre">get_sponsors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#event_routes.get_sponsors" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve sponsors for a specific event.</p>
+<p>Returns a list of sponsors who support the given event.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>event_id (int): The ID of the event.</p>
+</dd>
+<dt>Returns:</dt><dd><p>List[SponsorOut]: A list of sponsor objects related to the event.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="event_routes.get_tickets_for_event">
+<span class="sig-prename descclassname"><span class="pre">event_routes.</span></span><span class="sig-name descname"><span class="pre">get_tickets_for_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#event_routes.get_tickets_for_event" title="Link to this definition">¶</a></dt>
+<dd><p>Get all tickets for a specific event.</p>
+<p>Retrieves all purchased tickets for the specified event ID.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>List[TicketOut]: A list of ticket objects.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="event_routes.remove_from_favorites">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">event_routes.</span></span><span class="sig-name descname"><span class="pre">remove_from_favorites</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#event_routes.remove_from_favorites" title="Link to this definition">¶</a></dt>
+<dd><p>Remove a event from the user’s favorites.</p>
+<p>This endpoint allows an authenticated user to remove a previously added event 
+from their list of favorite events. The user must be logged in. The event ID 
+must be submitted through a form as part of the request.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>request (Request): The HTTP request object containing form data.
+db (Session): The SQLAlchemy database session.
+current_user (User): The currently authenticated user (automatically injected).</p>
+</dd>
+<dt>Returns:</dt><dd><p>RedirectResponse: Redirects the user to the “/my-events” page after successful removal.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">eventplanner</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#event_routes.add_feedback"><code class="docutils literal notranslate"><span class="pre">add_feedback()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event_routes.add_speaker"><code class="docutils literal notranslate"><span class="pre">add_speaker()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event_routes.add_sponsor"><code class="docutils literal notranslate"><span class="pre">add_sponsor()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event_routes.add_to_favorites"><code class="docutils literal notranslate"><span class="pre">add_to_favorites()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event_routes.buy_ticket"><code class="docutils literal notranslate"><span class="pre">buy_ticket()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event_routes.create_event"><code class="docutils literal notranslate"><span class="pre">create_event()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event_routes.get_all_events"><code class="docutils literal notranslate"><span class="pre">get_all_events()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event_routes.get_event"><code class="docutils literal notranslate"><span class="pre">get_event()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event_routes.get_feedbacks_for_event"><code class="docutils literal notranslate"><span class="pre">get_feedbacks_for_event()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event_routes.get_speaker"><code class="docutils literal notranslate"><span class="pre">get_speaker()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event_routes.get_sponsors"><code class="docutils literal notranslate"><span class="pre">get_sponsors()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event_routes.get_tickets_for_event"><code class="docutils literal notranslate"><span class="pre">get_tickets_for_event()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event_routes.remove_from_favorites"><code class="docutils literal notranslate"><span class="pre">remove_from_favorites()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">eventplanner documentation</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, author.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/api.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
