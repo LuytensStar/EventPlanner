@@ -783,3 +783,22 @@ label p {
 label {
   font-size: 10rem;
 }
+
+.alert {
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.success-alert {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 15px;
+  margin: 10px 0;
+  font-weight: bold;
+  font-size: 24px; /* більший текст */
+  border-radius: 4px;
+  text-align: center;
+}

@@ -11,6 +11,7 @@ from fastapi.templating import Jinja2Templates
 import models, schemas
 from models import get_db
 from dotenv import load_dotenv
+from models import User
 
 templates = Jinja2Templates(directory="static")
 
@@ -20,6 +21,20 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 router = APIRouter()
+
+
+def optional_current_user(request: Request, db: Session = Depends(get_db)):
+    token = request.cookies.get("access_token")
+    if not token:
+        return None
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username = payload.get("sub")
+        if username is None:
+            return None
+        return db.query(User).filter(User.username == username).first()
+    except JWTError:
+        return None
 
 
 def hash_password(password: str):
@@ -41,7 +56,7 @@ def get_current_user(request: Request, db: Session = Depends(get_db)) -> models.
     token = request.cookies.get("access_token")
     if not token:
         raise HTTPException(status_code=401, detail="Not authorized")
-    
+
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
@@ -49,22 +64,12 @@ def get_current_user(request: Request, db: Session = Depends(get_db)) -> models.
             raise HTTPException(status_code=401, detail="Invalid token")
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
-    
+
     user = db.query(models.User).filter(models.User.username == username).first()
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
 
     return user
-
-# def get_current_user(request: Request):
-#     token = request.cookies.get("access_token")
-#     if not token:
-#         raise HTTPException(status_code=401, detail="Not authorised")
-#     try:
-#         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-#         return payload.get("sub")
-#     except JWTError:
-#         raise HTTPException(status_code=401, detail="Invalid token")
 
 
 @router.get("/register")
