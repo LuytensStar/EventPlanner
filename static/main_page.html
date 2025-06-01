@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="pl">
   <head>
-
+    {% if message %}
+  <div class="alert success-alert">
+    {{ message }}
+  </div>
+{% endif %}
     <title>EVENT PLANNER</title>
+     
+   
+  </div>
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="XNBAJPsejw8HPJslmelCAv8wvduOcs4lSqHFfrZTtqQ">
     <meta name="description" content="Eventy">
@@ -65,6 +72,7 @@
 
         
       </ul>
+
     </header>
 <hr>
     <hr />
