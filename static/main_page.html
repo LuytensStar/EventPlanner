@@ -2,9 +2,18 @@
 <html lang="pl">
   <head>
     {% if message %}
-  <div class="alert success-alert">
+  <div id="alert" class="success-alert">
     {{ message }}
   </div>
+
+  <script>
+    setTimeout(() => {
+      const alert = document.getElementById('alert');
+      if (alert) {
+        alert.style.display = 'none';
+      }
+    }, 4000);  // приховає через 4 секунди
+  </script>
 {% endif %}
     <title>EVENT PLANNER</title>
      
@@ -44,7 +53,7 @@
         <ul class="lewy">
             <!-- Debug: user is {{ user }} -->
             {% if user %}
-              <li><span style="color:white; font-size: 3em;">Logged in as {{ user.username }}</span></li>
+              <!-- <li><span style="color:white; font-size: 3em;">Logged in as {{ user.username }}</span></li> -->
               <li><a href="/logout">Log out</a></li>
             {% else %}
               <li><a href="/login">Logowanie</a></li>
@@ -60,8 +69,9 @@
           <a href="#"><img src="static/mainimg/logo2.png" class="logopng" /></a>
         </div>
         <ul class="prawy">
-          <li><a href="#" target="_blank"><img src="static/mainimg/facebook.png" alt="FB" ></a></li>
-          <li><a href="#" target="_blank"><img src="static/mainimg/instagram.png" alt="IG" ></a></li>
+           {% if user %}
+              <li><span style="color:white; font-size: 3em;">Logged in as {{ user.username }}</span></li>
+           {% endif %}
         </ul>
       </nav>
       <ul class="ukryte" id="ukryte">
@@ -118,6 +128,7 @@
     <p>GDZIE: {{ event.place }} </p>
     <p>TEMAT: {{ event.description }}</p>
     <p>CENA: {{ event.price }}</p>
+    <p>SPONSORZY: {{ event.sponsors }}</p>
     <form method="POST" action="/add-to-favorites">
       <input type="hidden" name="event_id" value="{{ event.id }}">
       <button type="submit" class="btn">Add to Favorites</button>
@@ -170,7 +181,7 @@
         
           </div>
           <div class="footer-col">
-            <h4>Zaobserwuj mnie</h4>
+            <h4>Zaobserwuj nas!</h4>
             <div class="social-links">
               <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
 

@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="pl">
   <head>
-    {% if message %}
-  <div class="alert success-alert">
+  {% if message %}
+  <div id="alert" class="success-alert">
     {{ message }}
   </div>
+
+  <script>
+    setTimeout(() => {
+      const alert = document.getElementById('alert');
+      if (alert) {
+        alert.style.display = 'none';
+      }
+    }, 4000); 
+  </script>
 {% endif %}
     <title>EVENT PLANNER</title>
     <meta charset="UTF-8" />

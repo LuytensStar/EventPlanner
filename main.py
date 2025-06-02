@@ -42,11 +42,13 @@ def logout(response: Response):
 @app.get("/", response_class=HTMLResponse)
 def homepage(request: Request, db: Session = Depends(get_db), user: User = Depends(optional_current_user)):
     events = db.query(models.Event).all()
-
+    message = request.query_params.get("message")
+    
     context = {
         "request": request,
         "events": events,
-        "user": user
+        "user": user,
+        "message": message
     }
     return templates.TemplateResponse("main_page.html", context)
 
@@ -54,10 +56,12 @@ def homepage(request: Request, db: Session = Depends(get_db), user: User = Depen
 @app.get("/my-events", response_class=HTMLResponse)
 def my_events(request: Request, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
     favorite_events = current_user.favorites  # Завдяки relationship, не треба вручну SQL
+    message = request.query_params.get("message")
     return templates.TemplateResponse("mojeeventy.html", {
         "request": request,
         "events": favorite_events,
         "user": current_user,
+        "message": message
         
         
     })

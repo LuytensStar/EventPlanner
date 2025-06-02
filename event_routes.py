@@ -215,6 +215,7 @@ async def add_to_favorites(request: Request, db: Session = Depends(get_db),
     Returns:
         dict: A success message indicating the event was added.
     """
+    
 
     form = await request.form()
     event_id = int(form.get('event_id'))
@@ -223,9 +224,13 @@ async def add_to_favorites(request: Request, db: Session = Depends(get_db),
     if not event:
         raise HTTPException(status_code=404, detail="event not found")
 
-    if db.query(favourites_table).filter(favourites_table.c.user_id == current_user.id,
-                                         favourites_table.c.event_id == event_id).first():
-        raise HTTPException(status_code=400, detail="event already in favorites")
+    already_favorite = db.query(favourites_table).filter(
+        favourites_table.c.user_id == current_user.id,
+        favourites_table.c.event_id == event_id
+    ).first()
+
+    if already_favorite:
+        return RedirectResponse(url="/?message=Event+is+already+in+favorites", status_code=303)
 
     db.execute(favourites_table.insert().values(user_id=current_user.id, event_id=event_id))
     db.commit()
@@ -266,5 +271,6 @@ async def remove_from_favorites(
         )
     )
     db.commit()
-    return RedirectResponse(url="/my-events", status_code=303)
+    url = "/my-events?message=event+removed+from+favorites"
+    return RedirectResponse(url=url, status_code=303)
 

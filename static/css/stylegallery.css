@@ -1,4 +1,4 @@
-.galerry {
+/* .galerry {
   font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
@@ -133,7 +133,7 @@ html.sr .galerry .heading h1 {
 }
 /* From Uiverse.io by vinodjangid07 */
 
-.Btn {
+/* .Btn {
   width: 300px;
   height: 40px;
   display: flex;
@@ -183,4 +183,4 @@ html.sr .galerry .heading h1 {
 .Btn:active {
   transform: translate(5px, 5px);
   transition-duration: 0.3s;
-}
+} */ */
